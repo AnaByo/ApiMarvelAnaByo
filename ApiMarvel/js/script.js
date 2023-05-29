@@ -25,7 +25,7 @@ fetch(`https://gateway.marvel.com:443/v1/public/characters?ts=1&apikey=84bd0d2f0
 })
 
 //Comics da API
-fetch(`https://gateway.marvel.com:443/v1/public/comics?ts=1&apikey=84bd0d2f07f75ea6454fcf27780adc1b&hash=22455f8520c9dd6677ddacf0e9c3c44d`
+fetch(`https://gateway.marvel.com:443/v1/public/comics?title=Avengers&ts=1&apikey=84bd0d2f07f75ea6454fcf27780adc1b&hash=22455f8520c9dd6677ddacf0e9c3c44d`
     ).then((response) => {
         return response.json();        
     }).then((jsonParsed) => {
@@ -73,6 +73,7 @@ function geradorDivHeroi (srcImage, nomeHeroi, desc, div){
     textName.style.height = '100px'
     textName.style.transition = '0.40s'
     img.style.border = '3px solid white'
+    img.style.borderRadius = '10px';
     descricao.style.display = 'none'
 
     // Colocando Eventos de mouse hover e out.
@@ -310,6 +311,7 @@ function geradorDivQuadrinho (srcImage, nomeHeroi, desc, div){
     title.style.height = '120px'
     title.style.transition = '0.40s'
     img.style.border = '3px solid white'
+    img.style.borderRadius = '10px';
     descricao.style.display = 'none'
 
     // Colocando Eventos de mouse hover e out.

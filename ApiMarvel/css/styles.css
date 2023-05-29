@@ -672,6 +672,7 @@ progress {
 @media (min-width: 1400px) {
   .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1320px;
+    
   }
 }
 .row {
@@ -7684,6 +7685,7 @@ textarea.form-control-lg {
 .mx-2 {
   margin-right: 0.5rem !important;
   margin-left: 0.5rem !important;
+  color: #731400;
 }
 
 .mx-3 {
@@ -11277,6 +11279,26 @@ font-family: 'Montserrat Subrayada', sans-serif;
   border-radius: 0px 0px 30px 0px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.185);
   border-top: 3px solid #ee2027;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  #meusHerois{
+    flex-direction:row;
+    flex-grow: 9999;
+  }
+  #meusQuadrinhos{
+
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  
+  
+}
+@media (min-width: 769px) and (max-width: 1024PX) {
+
+}
+@media (min-width: 1025px){
+  
 }
 
 .personagem{
