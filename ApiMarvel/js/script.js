@@ -1,8 +1,6 @@
-//Definindo minhas variáveis com as keys da API
-const timestamp = '1'
-const publickey = '84bd0d2f07f75ea6454fcf27780adc1b'
+
 //md5 = request marvel + timestamp + apykey + hash (timestamp+ publickey+ privatekey)
-const md5 = 'https://gateway.marvel.com:443/v1/public/characters?limit=60&apikey=84bd0d2f07f75ea6454fcf27780adc1b&hash=dac62e8abe2ae0a366fe16d4a180cd16'
+const md5 = 'https://gateway.marvel.com:443/v1/public/characters?ts=1&apikey=84bd0d2f07f75ea6454fcf27780adc1b&hash=22455f8520c9dd6677ddacf0e9c3c44d'
 
 
 // Arrays utilizados nas funções de Search
@@ -12,7 +10,7 @@ var arrayTitulos = []
 var arrayDivsQuadrinhos = []
 
 // Utilizando o fetch para fazer a chamada da API + o then para ter o retorno do meu objeto JSON
-fetch(`https://gateway.marvel.com:443/v1/public/characters?limit=60&apikey=84bd0d2f07f75ea6454fcf27780adc1b&hash=dac62e8abe2ae0a366fe16d4a180cd16`
+fetch(`https://gateway.marvel.com:443/v1/public/characters?ts=1&apikey=84bd0d2f07f75ea6454fcf27780adc1b&hash=22455f8520c9dd6677ddacf0e9c3c44d`
     ).then((response) => {
         return response.json();        
     }).then((jsonParsed) => {
@@ -26,8 +24,8 @@ fetch(`https://gateway.marvel.com:443/v1/public/characters?limit=60&apikey=84bd0
         })
 })
 
-// Pegando os quadrinhos da API
-fetch(`https://gateway.marvel.com:443/v1/public/characters?limit=60&apikey=84bd0d2f07f75ea6454fcf27780adc1b&hash=dac62e8abe2ae0a366fe16d4a180cd16`
+//Comics da API
+fetch(`https://gateway.marvel.com:443/v1/public/comics?ts=1&apikey=84bd0d2f07f75ea6454fcf27780adc1b&hash=22455f8520c9dd6677ddacf0e9c3c44d`
     ).then((response) => {
         return response.json();        
     }).then((jsonParsed) => {
@@ -70,22 +68,22 @@ function geradorDivHeroi (srcImage, nomeHeroi, desc, div){
 
     // Estilizando meu texto e imagem
     textName.style.textAlign = 'center'
-    textName.style.backgroundColor = 'rgb(25,25,25)'
+    textName.style.padding = '17%'
+    textName.style.backgroundColor = 'white'
     textName.style.height = '100px'
-    textName.style.borderRadius = '30px 0px 0px 0px'
     textName.style.transition = '0.40s'
-    img.style.borderTop = '3px solid #ee2027'
+    img.style.border = '3px solid white'
     descricao.style.display = 'none'
 
-    // Colocando Eventos de mouse hover e out. Mudando as cores.
+    // Colocando Eventos de mouse hover e out.
     divFilho.addEventListener('mouseover', () => {
-        textName.style.backgroundColor = '#ee2027'
-        img.style.borderTop = '3px solid rgb(25,25,25)'
+        textName.style.backgroundColor = '#731400'
+        img.style.border = '3px solid black'
     })
 
     divFilho.addEventListener('mouseout', () => {
-        textName.style.backgroundColor = "rgb(25,25,25)"
-        img.style.borderTop = '3px solid #ee2027'
+        textName.style.backgroundColor = "black"
+        img.style.border = '3px solid black'
     })
 
     // Função do meu Search
@@ -307,22 +305,22 @@ function geradorDivQuadrinho (srcImage, nomeHeroi, desc, div){
 
     // Estilizando meu texto e imagem
     title.style.textAlign = 'center'
-    title.style.backgroundColor = 'rgb(25,25,25)'
-    title.style.color =  'white'
-    title.style.height = '100px'
-    title.style.borderRadius = '30px 0px 0px 0px'
-    img.style.borderTop = '3px solid #ee2027'
+    title.style.padding = '16%'
+    title.style.backgroundColor = 'white'
+    title.style.height = '120px'
+    title.style.transition = '0.40s'
+    img.style.border = '3px solid white'
     descricao.style.display = 'none'
 
-    // Colocando Eventos de mouse hover e out. Mudando as cores.
+    // Colocando Eventos de mouse hover e out.
     divFilho.addEventListener('mouseover', () => {
-        title.style.backgroundColor = '#ee2027'
-        img.style.borderTop = '3px solid rgb(25,25,25)'
+        title.style.backgroundColor = '#731400'
+        img.style.border = '3px solid black'
     })
 
     divFilho.addEventListener('mouseout', () => {
-        title.style.backgroundColor = "rgb(25,25,25)"
-        img.style.borderTop = '3px solid #ee2027'
+        title.style.backgroundColor = "black"
+        img.style.border = '3px solid black'
     })
 
     // Função do meu Search dos quadrinhos
@@ -524,7 +522,7 @@ function verificaDesc(descricao){
     }
 }
 
-function menuzin(){
+function menu(){
     const minhaUl = document.getElementById('minhaUl')
     const botaoToggle = document.getElementById('botao')
     const botaoToggle2 = document.getElementById('botao-2')
@@ -548,4 +546,4 @@ function menuzin(){
         botaoToggle2.style.display = 'none'
         botaoToggle.style.display = 'block'
     })
-}menuzin()
+}menu()
