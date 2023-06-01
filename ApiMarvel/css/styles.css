@@ -11201,6 +11201,12 @@ font-family: 'Montserrat Subrayada', sans-serif;
   margin-top: 90px;
 }
 
+.projects-section .series h2{
+  color: white;
+  margin-top: 90px;
+  border-top: 2px solid white;
+}
+
 @media (min-width: 992px) {
   .projects-section .featured-text {
     padding: 0 0 0 2rem;

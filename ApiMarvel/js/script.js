@@ -68,15 +68,17 @@ function geradorDivHeroi (srcImage, nomeHeroi, desc, div){
 
     // Estilizando meu texto e imagem
     textName.style.textAlign = 'center'
-    textName.style.padding = '17%'
+    textName.style.padding = '12.5%'
     textName.style.backgroundColor = 'white'
-    textName.style.height = '100px'
+    textName.style.height = '120px'
     textName.style.transition = '0.40s'
+    textName.style.fontSize = '20px'
     img.style.border = '3px solid white'
-    img.style.borderRadius = '10px';
+    img.style.borderBottomLeftRadius = '10px'
+    img.style.borderBottomRightRadius = '10px'
     descricao.style.display = 'none'
 
-    // Colocando Eventos de mouse hover e out.
+    // Colocando eventos de mousehover e out.
     divFilho.addEventListener('mouseover', () => {
         textName.style.backgroundColor = '#731400'
         img.style.border = '3px solid black'
@@ -84,6 +86,7 @@ function geradorDivHeroi (srcImage, nomeHeroi, desc, div){
 
     divFilho.addEventListener('mouseout', () => {
         textName.style.backgroundColor = "black"
+        textName.style.color = '#FFF'
         img.style.border = '3px solid black'
     })
 
@@ -230,7 +233,7 @@ function geradorDivHeroi (srcImage, nomeHeroi, desc, div){
             }
         }
     }
-
+    // Função para gerar o modal das imagens
     function geraModal(){
 
         const itens = {
@@ -241,6 +244,8 @@ function geradorDivHeroi (srcImage, nomeHeroi, desc, div){
             imagem: document.createElement('img'),
             fechar: document.getElementById('fechar')
         }
+
+
 
         // Evento para aparecer o modal ao clicar no personagem
         divFilho.addEventListener('click', () => {
@@ -253,6 +258,11 @@ function geradorDivHeroi (srcImage, nomeHeroi, desc, div){
             itens.modal.appendChild(itens.texto)
             itens.modal.appendChild(itens.imagem)
             itens.modal.appendChild(itens.textDesc)
+
+            itens.textDesc.style.color = '#FFF'
+            itens.textDesc.style.margin = '2%'
+            itens.textDesc.style.padding = '10%'
+            itens.textDesc.style.fontFamily = ''
         })
 
         // Função para chamar o evento para fechar o modal
