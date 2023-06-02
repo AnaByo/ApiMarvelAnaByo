@@ -20,11 +20,11 @@ fetch(`https://gateway.marvel.com:443/v1/public/characters?ts=1&apikey=84bd0d2f0
             const srcImagem = element.thumbnail.path + '.' + element.thumbnail.extension
             const nomeHeroi = element.name
             var desc = verificaDesc(element.description)
-
-            geradorDivHeroi(srcImagem, nomeHeroi, desc, divHerois)
+             if (srcImagem != 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg'){
+                geradorDivHeroi(srcImagem, nomeHeroi, desc, divHerois)
+             }
         })
 })
-
 //Comics da API
 fetch(`https://gateway.marvel.com:443/v1/public/comics?title=Avengers&ts=1&apikey=84bd0d2f07f75ea6454fcf27780adc1b&hash=22455f8520c9dd6677ddacf0e9c3c44d`
     ).then((response) => {
@@ -42,7 +42,7 @@ fetch(`https://gateway.marvel.com:443/v1/public/comics?title=Avengers&ts=1&apike
 })
 
 //Series da API
-fetch(`https://gateway.marvel.com:443/v1/public/series?ts=1&apikey=84bd0d2f07f75ea6454fcf27780adc1b&hash=22455f8520c9dd6677ddacf0e9c3c44d`
+fetch(`https://gateway.marvel.com:443/v1/public/series?seriesType=limited&ts=1&apikey=84bd0d2f07f75ea6454fcf27780adc1b&hash=22455f8520c9dd6677ddacf0e9c3c44d`
     ).then((response) => {
         return response.json();        
     }).then((jsonParsed) => {
@@ -51,8 +51,11 @@ fetch(`https://gateway.marvel.com:443/v1/public/series?ts=1&apikey=84bd0d2f07f75
             const srcImagem = element.thumbnail.path + '.' + element.thumbnail.extension
             const titleSerie = element.title
             var desc = verificaDesc(element.description)
+                if (srcImagem != 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg'){
+                    geradorDivSerie(srcImagem, titleSerie, desc, divseries)
+                }
 
-            geradorDivSerie(srcImagem, titleSerie, desc, divseries)
+
         })
 
 })
@@ -277,6 +280,8 @@ function geradorDivHeroi (srcImage, nomeHeroi, desc, div){
             itens.modal.appendChild(itens.imagem)
             itens.modal.appendChild(itens.textDesc)
 
+            itens.imagem.style.borderColor = '#FFF'
+
             itens.textDesc.style.color = '#FFF'
             itens.textDesc.style.margin = '2%'
             itens.textDesc.style.padding = '10%'
@@ -305,8 +310,18 @@ function geradorDivHeroi (srcImage, nomeHeroi, desc, div){
     div.appendChild(divPai)
 }
 
+// Função para verificar se a descrição da minha div ta vazia
+function verificaDesc(descricao){
+    if (descricao == "" ){
+        return descricao = "Esse personagem não possui descrição."
+    }else{
+        return descricao
+    }
+}
+
+
 // Função responsável por adicionar a div de quadrinhos
-function geradorDivQuadrinho (srcImage, nomeHeroi, desc, div){
+function geradorDivQuadrinho (srcImage, nomequadrinho, desc, div){
     // Criando as divs
     const divPai = document.createElement('div')
     const divFilho = document.createElement('div')
@@ -317,14 +332,14 @@ function geradorDivQuadrinho (srcImage, nomeHeroi, desc, div){
     var addDivPai
 
     // Adicionando valores aos elementos de acordo com as propriedades retornadas do json
-    title.textContent = nomeHeroi
+    title.textContent = nomequadrinho
     img.src = srcImage
     descricao.textContent = desc
     
     // Adicionando as divs
     divFilho.appendChild(title)
     divFilho.appendChild(img)
-    divFilho.appendChild(descricao)
+    // divFilho.appendChild(descricao)
     divPai.appendChild(divFilho)
     divPai.classList.add('personagem')
     titulo = divPai.textContent
@@ -339,8 +354,9 @@ function geradorDivQuadrinho (srcImage, nomeHeroi, desc, div){
     title.style.height = '120px'
     title.style.transition = '0.40s'
     img.style.border = '3px solid white'
-    img.style.borderRadius = '10px';
-    descricao.style.display = 'none'
+    img.style.borderBottomLeftRadius = '10px'
+    img.style.borderBottomRightRadius = '10px'
+    // descricao.style.display = 'none'
 
     // Colocando Eventos de mouse hover e out.
     divFilho.addEventListener('mouseover', () => {
@@ -350,6 +366,7 @@ function geradorDivQuadrinho (srcImage, nomeHeroi, desc, div){
 
     divFilho.addEventListener('mouseout', () => {
         title.style.backgroundColor = "black"
+        title.style.color = '#FFF'
         img.style.border = '3px solid black'
     })
 
@@ -516,6 +533,10 @@ function geradorDivQuadrinho (srcImage, nomeHeroi, desc, div){
             itens.textDesc.innerHTML = desc
             itens.textDesc.classList.add('desc')
 
+            itens.modal.style.width = '500px'
+            itens.imagem.style.width = '400px'
+            itens.imagem.style.margin = 'auto'
+
             itens.modal.appendChild(itens.texto)
             itens.modal.appendChild(itens.imagem)
             itens.modal.appendChild(itens.textDesc)
@@ -543,14 +564,6 @@ function geradorDivQuadrinho (srcImage, nomeHeroi, desc, div){
     div.appendChild(divPai)
 }
 
-// Função para verificar se a descrição da minha div ta vazia
-function verificaDesc(descricao){
-    if (descricao == "" ){
-        return descricao = "Esse character não possui descrição."
-    }else{
-        return descricao
-    }
-}
 
 
 // Função responsável por adicionar a div de Series
@@ -793,15 +806,6 @@ function geradorDivSerie (srcImage, titleSerie, desc, div){
     geraModal()
 
     div.appendChild(divPai)
-}
-
-// Função para verificar se a descrição da minha div ta vazia
-function verificaDesc(descricao){
-    if (descricao == "" ){
-        return descricao = "Esse character não possui descrição."
-    }else{
-        return descricao
-    }
 }
 
 
